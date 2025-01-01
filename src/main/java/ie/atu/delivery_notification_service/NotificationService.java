@@ -1,7 +1,5 @@
 package ie.atu.delivery_notification_service;
 
-
-
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +15,13 @@ public class NotificationService {
     public void processPaymentStatusNotification(String message) {
         System.out.println("Mock Notification: " + message);
     }
+
+    @RabbitListener(queues = "delivery-status-queue")
+    public void processDeliveryStatusNotification(String message) {
+        System.out.println("Mock Notification: " + message);
+    }
 }
+
 
 
 
