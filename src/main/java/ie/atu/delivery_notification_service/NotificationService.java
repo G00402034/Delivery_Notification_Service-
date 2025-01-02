@@ -6,21 +6,35 @@ import org.springframework.stereotype.Service;
 @Service
 public class NotificationService {
 
+
+
+
     @RabbitListener(queues = "order-status-queue")
-    public void processOrderStatusNotification(String message) {
-        System.out.println("Mock Notification: " + message);
+    public void processOrderStatusNotification(OrderStatusMessage message) {
+        System.out.println("Order Notification: " + message);
     }
+
 
     @RabbitListener(queues = "payment-status-queue")
-    public void processPaymentStatusNotification(String message) {
-        System.out.println("Mock Notification: " + message);
+        public void processPaymentStatusNotification(String message) {
+            try {
+                System.out.println("Mock Payment Notification: " + message);
+            } catch (Exception e) {
+                System.err.println("Error processing payment-status message: " + e.getMessage());
+            }
+        }
+
+        @RabbitListener(queues = "delivery-status-queue")
+        public void processDeliveryStatusNotification(String message) {
+            try {
+                System.out.println("Mock Delivery Notification: " + message);
+            } catch (Exception e) {
+                System.err.println("Error processing delivery-status message: " + e.getMessage());
+            }
+        }
     }
 
-    @RabbitListener(queues = "delivery-status-queue")
-    public void processDeliveryStatusNotification(String message) {
-        System.out.println("Mock Notification: " + message);
-    }
-}
+
 
 
 
