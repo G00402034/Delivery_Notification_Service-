@@ -20,7 +20,7 @@ class NotificationServiceTest {
 
     @Test
     void testProcessOrderStatusNotification() {
-        // Arrange
+
         OrderStatusMessage message = new OrderStatusMessage();
         message.setOrderId("12345");
         message.setCustomerId("54321");
@@ -31,13 +31,13 @@ class NotificationServiceTest {
         message.setCreatedAt("2025-01-02T10:00:00");
         message.setUpdatedAt("2025-01-02T12:00:00");
 
-        // Act & Assert
+
         assertDoesNotThrow(() -> notificationService.processOrderStatusNotification(message));
     }
 
     @Test
     void testProcessPaymentStatusNotification() {
-        // Arrange
+
         String paymentMessage = "Payment for Order 12345 is Successful";
 
         // Act & Assert
@@ -46,10 +46,10 @@ class NotificationServiceTest {
 
     @Test
     void testProcessDeliveryStatusNotification() {
-        // Arrange
+
         String deliveryMessage = "Delivery for Order 12345 is In Transit";
 
-        // Act & Assert
+
         assertDoesNotThrow(() -> notificationService.processDeliveryStatusNotification(deliveryMessage));
     }
 }
